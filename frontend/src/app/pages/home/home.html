@@ -1,0 +1,220 @@
+<div class="home">
+
+  <!-- TOP BAR -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="topbar-links">
+        <a href="#"><i class="fa-solid fa-user"></i> Personas</a>
+        <a href="#"><i class="fa-solid fa-building"></i> Empresas</a>
+        <a href="#"><i class="fa-solid fa-store"></i> Pymes</a>
+        <a href="#"><i class="fa-solid fa-chart-line"></i> Inversiones</a>
+      </div>
+      <div class="topbar-right">
+        <a href="#"><i class="fa-solid fa-location-dot"></i> Sucursales</a>
+        <a href="#"><i class="fa-solid fa-headset"></i> Contacto</a>
+        <a href="#"><i class="fa-solid fa-globe"></i> ES</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MAIN NAVBAR -->
+  <nav class="main-nav">
+    <div class="nav-inner">
+      <div class="brand">
+        <i class="fa-solid fa-landmark bank-icon"></i>
+        <span class="bank-name">SpringBank</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#">Cuentas</a></li>
+        <li><a href="#">Tarjetas</a></li>
+        <li><a href="#">Créditos</a></li>
+        <li><a href="#">Seguros</a></li>
+        <li><a href="#">Inversiones</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button class="btn-outline-white" routerLink="/login"><i class="fa-solid fa-right-to-bracket"></i> Banca en línea</button>
+        <button class="btn-white" routerLink="/login">Ingresar <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="foto3.jpg" alt="SpringBank" class="hero-bg" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag"><i class="fa-solid fa-star"></i> Nuevo 2025</span>
+      <h1>Saca tu cuenta corriente<br><span>en 1 minuto</span></h1>
+      <p>Sin filas, sin papeles. Abre tu cuenta 100% digital desde tu celular y empieza a disfrutar todos los beneficios de SpringBank.</p>
+      <div class="hero-btns">
+        <button class="btn-primary-lg"><i class="fa-solid fa-rocket"></i> Abrir cuenta gratis</button>
+        <button class="btn-ghost">Ver beneficios <i class="fa-solid fa-arrow-right"></i></button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>+2M</strong><span><i class="fa-solid fa-users"></i> clientes</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>4.8</strong><span><i class="fa-solid fa-star"></i> App Store</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>24/7</strong><span><i class="fa-solid fa-clock"></i> soporte</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS RÁPIDOS -->
+  <section class="quick-products">
+    <div class="section-inner">
+      <div class="qp-card" *ngFor="let p of quickProducts">
+        <div class="qp-icon"><i [class]="p.icon"></i></div>
+        <div>
+          <h4>{{ p.title }}</h4>
+          <p>{{ p.desc }}</p>
+        </div>
+        <a href="#">Ver más <i class="fa-solid fa-chevron-right"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS PRINCIPALES -->
+  <section class="products">
+    <div class="section-inner">
+      <div class="section-header">
+        <h2>Todo lo que necesitas en un solo banco</h2>
+        <p>Productos diseñados para tu vida</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card" *ngFor="let p of products">
+          <div class="product-icon" [style.background]="p.bg" [style.color]="p.color"><i [class]="p.icon"></i></div>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.desc }}</p>
+          <ul>
+            <li *ngFor="let f of p.features"><i class="fa-solid fa-check"></i> {{ f }}</li>
+          </ul>
+          <button class="btn-primary-sm">{{ p.cta }}</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BANNER FOTO2 -->
+  <section class="banner-section">
+    <div class="banner-overlay">
+      <div class="banner-content">
+        <span class="banner-tag"><i class="fa-solid fa-bolt"></i> Crédito de consumo</span>
+        <h2>Hasta $50.000.000<br>con la tasa más baja</h2>
+        <p>Simula tu crédito en segundos y recibe el dinero en tu cuenta el mismo día.</p>
+        <button class="btn-white-lg"><i class="fa-solid fa-calculator"></i> Simular ahora</button>
+      </div>
+    </div>
+    <img src="foto2.jpg" alt="Crédito SpringBank" class="banner-img" />
+  </section>
+
+  <!-- BENEFICIOS APP -->
+  <section class="app-section">
+    <div class="section-inner app-inner">
+      <div class="app-photo">
+        <img src="foto1.jpg" alt="Cliente SpringBank" />
+      </div>
+      <div class="app-text">
+        <span class="section-tag"><i class="fa-solid fa-mobile-screen"></i> App SpringBank</span>
+        <h2>Tu banco en el bolsillo,<br>disponible 24/7</h2>
+        <div class="app-features">
+          <div class="app-feat" *ngFor="let f of appFeatures">
+            <span class="feat-icon"><i [class]="f.icon"></i></span>
+            <div>
+              <h4>{{ f.title }}</h4>
+              <p>{{ f.desc }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="store-btns">
+          <button class="store-btn"><i class="fa-brands fa-apple"></i> App Store</button>
+          <button class="store-btn"><i class="fa-brands fa-google-play"></i> Google Play</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonials">
+    <div class="section-inner">
+      <h2>Lo que dicen nuestros clientes</h2>
+      <div class="testi-grid">
+        <div class="testi-card" *ngFor="let t of testimonials">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p>"{{ t.text }}"</p>
+          <div class="testi-author">
+            <div class="avatar">{{ t.name[0] }}</div>
+            <div>
+              <strong>{{ t.name }}</strong>
+              <span>{{ t.role }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <i class="fa-solid fa-landmark cta-icon"></i>
+      <h2>¿Listo para empezar?</h2>
+      <p>Únete a más de 2 millones de clientes que ya confían en SpringBank</p>
+      <div class="cta-btns">
+        <button class="btn-white-lg"><i class="fa-solid fa-rocket"></i> Abrir cuenta gratis</button>
+        <button class="btn-ghost-white"><i class="fa-solid fa-phone"></i> Hablar con un asesor</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <i class="fa-solid fa-landmark"></i>
+          <span class="bank-name">SpringBank</span>
+        </div>
+        <p>Banco regulado por la CMF.<br>Depósitos garantizados por el Estado.</p>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Personas</h5>
+        <a href="#"><i class="fa-solid fa-wallet"></i> Cuenta Corriente</a>
+        <a href="#"><i class="fa-solid fa-credit-card"></i> Tarjeta de Crédito</a>
+        <a href="#"><i class="fa-solid fa-hand-holding-dollar"></i> Crédito de Consumo</a>
+        <a href="#"><i class="fa-solid fa-house"></i> Hipotecario</a>
+      </div>
+      <div class="footer-col">
+        <h5>Empresas</h5>
+        <a href="#"><i class="fa-solid fa-building-columns"></i> Cuenta Empresa</a>
+        <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Leasing</a>
+        <a href="#"><i class="fa-solid fa-receipt"></i> Factoring</a>
+        <a href="#"><i class="fa-solid fa-ship"></i> Comercio Exterior</a>
+      </div>
+      <div class="footer-col">
+        <h5>Ayuda</h5>
+        <a href="#"><i class="fa-solid fa-circle-question"></i> Centro de ayuda</a>
+        <a href="#"><i class="fa-solid fa-map-location-dot"></i> Sucursales y ATM</a>
+        <a href="#"><i class="fa-solid fa-shield-halved"></i> Seguridad</a>
+        <a href="#"><i class="fa-solid fa-triangle-exclamation"></i> Denuncia fraude</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 SpringBank. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+</div>

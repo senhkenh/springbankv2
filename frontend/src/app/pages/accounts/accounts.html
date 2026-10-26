@@ -1,0 +1,42 @@
+<div class="accounts-page">
+  <h2>Mis Cuentas</h2>
+
+  <div class="accounts-grid">
+    <div class="account-card" *ngFor="let acc of accounts" [style.border-top]="'4px solid ' + acc.color">
+      <div class="acc-top">
+        <span class="acc-type" [style.color]="acc.color">{{ acc.type }}</span>
+        <span class="acc-number">{{ acc.number }}</span>
+      </div>
+      <p class="acc-name">{{ acc.name }}</p>
+      <p class="acc-balance">{{ acc.balance | currency:'USD':'symbol':'1.2-2' }}</p>
+      <div class="acc-actions">
+        <button class="btn-outline">Detalles</button>
+        <button class="btn-primary">Transferir</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="card movements">
+    <h3>Movimientos recientes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Descripción</th>
+          <th>Fecha</th>
+          <th>Cuenta</th>
+          <th>Monto</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let m of movements">
+          <td>{{ m.desc }}</td>
+          <td>{{ m.date }}</td>
+          <td><span class="badge">{{ m.account }}</span></td>
+          <td [class.credit]="m.amount > 0" [class.debit]="m.amount < 0">
+            {{ m.amount > 0 ? '+' : '' }}{{ m.amount | currency:'USD':'symbol':'1.2-2' }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

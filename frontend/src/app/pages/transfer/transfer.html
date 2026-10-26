@@ -1,0 +1,57 @@
+<div class="transfer-page">
+  <h2>Nueva Transferencia</h2>
+
+  <div class="transfer-layout">
+    <div class="card transfer-form" *ngIf="!success">
+      <h3>Datos de la transferencia</h3>
+
+      <form (ngSubmit)="submit()">
+        <div class="field">
+          <label>Cuenta origen</label>
+          <select [(ngModel)]="form.fromAccount" name="from">
+            <option value="">Selecciona una cuenta</option>
+            <option *ngFor="let a of accounts" [value]="a">{{ a }}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Cuenta destino</label>
+          <select [(ngModel)]="form.toAccount" name="to">
+            <option value="">Selecciona una cuenta</option>
+            <option *ngFor="let a of accounts" [value]="a">{{ a }}</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>Monto (USD)</label>
+          <input type="number" [(ngModel)]="form.amount" name="amount" placeholder="0.00" min="1" />
+        </div>
+
+        <div class="field">
+          <label>Descripción (opcional)</label>
+          <input type="text" [(ngModel)]="form.description" name="desc" placeholder="Ej: Pago de renta" />
+        </div>
+
+        <p class="error" *ngIf="error">{{ error }}</p>
+        <button type="submit" class="btn-primary" style="width:100%; padding:13px; font-size:15px;">Confirmar transferencia</button>
+      </form>
+    </div>
+
+    <div class="card success-card" *ngIf="success">
+      <div class="success-icon">✅</div>
+      <h3>¡Transferencia exitosa!</h3>
+      <p>Tu transferencia fue procesada correctamente.</p>
+      <button class="btn-primary" (click)="reset()">Realizar otra transferencia</button>
+    </div>
+
+    <div class="card info-card">
+      <h3>Información</h3>
+      <ul>
+        <li>🕐 Las transferencias entre cuentas propias son inmediatas.</li>
+        <li>📋 Guarda el comprobante de tu operación.</li>
+        <li>🔒 Tus datos están protegidos con cifrado SSL.</li>
+        <li>📞 Soporte 24/7: <strong>1-800-SPRING</strong></li>
+      </ul>
+    </div>
+  </div>
+</div>

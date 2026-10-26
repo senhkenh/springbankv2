@@ -1,0 +1,40 @@
+<div class="dashboard">
+  <div class="welcome">
+    <div>
+      <h2>Hola, {{ user }} 👋</h2>
+      <p>Aquí está el resumen de tu cuenta</p>
+    </div>
+    <button class="btn-primary" routerLink="/transfer">Nueva transferencia</button>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card card" *ngFor="let s of summary">
+      <div class="icon" [style.background]="s.color + '1a'" [style.color]="s.color">{{ s.icon }}</div>
+      <div>
+        <p class="label">{{ s.label }}</p>
+        <p class="value">{{ s.value | currency:'USD':'symbol':'1.2-2' }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="card transactions">
+    <div class="tx-header">
+      <h3>Últimas transacciones</h3>
+      <a routerLink="/accounts">Ver todas</a>
+    </div>
+    <div class="tx-list">
+      <div class="tx-item" *ngFor="let tx of transactions">
+        <div class="tx-icon" [class.credit]="tx.type === 'credit'" [class.debit]="tx.type === 'debit'">
+          {{ tx.type === 'credit' ? '↓' : '↑' }}
+        </div>
+        <div class="tx-info">
+          <span class="tx-desc">{{ tx.desc }}</span>
+          <span class="tx-date">{{ tx.date }}</span>
+        </div>
+        <span class="tx-amount" [class.credit]="tx.type === 'credit'" [class.debit]="tx.type === 'debit'">
+          {{ tx.amount > 0 ? '+' : '' }}{{ tx.amount | currency:'USD':'symbol':'1.2-2' }}
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

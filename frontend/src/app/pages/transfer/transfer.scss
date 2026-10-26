@@ -1,0 +1,34 @@
+.transfer-page {
+  max-width: 900px;
+  margin: 32px auto;
+  padding: 0 24px;
+  h2 { font-size: 24px; margin-bottom: 24px; }
+}
+
+.transfer-layout {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 24px;
+
+  @media (max-width: 700px) { grid-template-columns: 1fr; }
+}
+
+.transfer-form {
+  h3 { font-size: 18px; margin-bottom: 24px; }
+  .field { margin-bottom: 18px; label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; } }
+  .error { color: var(--danger); font-size: 13px; margin-bottom: 12px; }
+}
+
+.success-card {
+  text-align: center;
+  padding: 48px 24px;
+  .success-icon { font-size: 56px; margin-bottom: 16px; }
+  h3 { font-size: 22px; margin-bottom: 8px; color: var(--success); }
+  p { color: var(--muted); margin-bottom: 24px; }
+}
+
+.info-card {
+  h3 { font-size: 16px; margin-bottom: 16px; color: var(--primary); }
+  ul { list-style: none; display: flex; flex-direction: column; gap: 14px; }
+  li { font-size: 13px; color: var(--muted); line-height: 1.5; }
+}

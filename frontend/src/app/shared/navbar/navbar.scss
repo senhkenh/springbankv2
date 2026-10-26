@@ -1,0 +1,46 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--primary);
+  padding: 0 32px;
+  height: 64px;
+  box-shadow: 0 2px 8px rgba(0,41,255,0.3);
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    .logo { font-size: 24px; }
+    .name { color: white; font-size: 20px; font-weight: 700; letter-spacing: 0.5px; }
+  }
+
+  .links {
+    display: flex;
+    list-style: none;
+    gap: 8px;
+
+    a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 8px;
+      font-weight: 500;
+      transition: all 0.2s;
+      &:hover, &.active {
+        background: rgba(255,255,255,0.2);
+        color: white;
+      }
+    }
+  }
+
+  .btn-logout {
+    background: rgba(255,255,255,0.15);
+    color: white;
+    border: 1.5px solid rgba(255,255,255,0.4);
+    padding: 8px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    &:hover { background: rgba(255,255,255,0.25); }
+  }
+}
