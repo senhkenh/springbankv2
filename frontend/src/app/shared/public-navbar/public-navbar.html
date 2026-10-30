@@ -1,0 +1,41 @@
+<header class="pub-nav">
+  <div class="topbar">
+    <div class="container">
+      <div class="topbar-left">
+        <a href="#"><i class="fa-solid fa-location-dot"></i> Sucursales y ATM</a>
+        <a href="/ayuda"><i class="fa-solid fa-headset"></i> Atención al cliente</a>
+        <a href="#"><i class="fa-solid fa-phone"></i> 600 600 1000</a>
+      </div>
+      <div class="topbar-right">
+        <a href="#"><i class="fa-solid fa-globe"></i> ES</a>
+        <a href="#"><i class="fa-solid fa-universal-access"></i> Accesibilidad</a>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <div class="container">
+      <a class="brand" routerLink="/">
+        <i class="fa-solid fa-landmark"></i>
+        <span>SpringBank</span>
+      </a>
+
+      <ul class="nav-links" [class.open]="menuOpen">
+        <li *ngFor="let item of navItems">
+          <a [routerLink]="item.link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: item.link === '/'}">
+            {{ item.label }}
+          </a>
+        </li>
+      </ul>
+
+      <div class="nav-actions">
+        <a routerLink="/ayuda" class="btn btn-ghost btn-sm"><i class="fa-solid fa-circle-question"></i> Ayuda</a>
+        <a routerLink="/login" class="btn btn-primary btn-sm"><i class="fa-solid fa-right-to-bracket"></i> Banca en línea</a>
+      </div>
+
+      <button class="hamburger" (click)="menuOpen = !menuOpen">
+        <i [class]="menuOpen ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'"></i>
+      </button>
+    </div>
+  </nav>
+</header>

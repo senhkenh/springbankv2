@@ -1,0 +1,86 @@
+<app-public-navbar />
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a routerLink="/">Inicio</a><i class="fa-solid fa-chevron-right"></i><span>Inversiones</span></div>
+    <h1>Inversiones</h1>
+    <p>Haz crecer tu patrimonio con instrumentos diseñados para cada perfil de inversionista.</p>
+  </div>
+</div>
+
+<main class="page-content">
+
+  <section class="fondos-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-chart-pie"></i> Fondos Mutuos</span>
+      <h2 class="section-title">Elige tu perfil de inversión</h2>
+      <p class="section-subtitle">Rentabilidades históricas a 12 meses. Las rentabilidades pasadas no garantizan rentabilidades futuras.</p>
+    </div>
+    <div class="fondos-grid">
+      <div class="fondo-card" *ngFor="let f of fondos">
+        <div class="fondo-header">
+          <div>
+            <span class="badge" [class.badge-green]="f.riesgo==='Bajo'" [class.badge-yellow]="f.riesgo==='Medio'" [class.badge-red]="f.riesgo==='Alto'">
+              Riesgo {{ f.riesgo }}
+            </span>
+            <h3>{{ f.nombre }}</h3>
+            <p class="fondo-tipo">{{ f.tipo }}</p>
+          </div>
+          <div class="fondo-rent">
+            <span>Rentabilidad 12M</span>
+            <strong>{{ f.rentabilidad }}</strong>
+          </div>
+        </div>
+        <p class="fondo-desc">{{ f.desc }}</p>
+        <div class="fondo-meta">
+          <div><span>Plazo mínimo</span><strong>{{ f.plazo }}</strong></div>
+          <div><span>Inversión mínima</span><strong>{{ f.minimo }}</strong></div>
+        </div>
+        <button class="btn btn-primary btn-full">Invertir ahora</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="productos-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-grid-2"></i> Más productos</span>
+      <h2 class="section-title">Otros instrumentos de inversión</h2>
+    </div>
+    <div class="productos-grid">
+      <div class="prod-card" *ngFor="let p of productos">
+        <div class="prod-icon"><i [class]="p.icon"></i></div>
+        <div class="prod-body">
+          <h4>{{ p.title }}</h4>
+          <p>{{ p.desc }}</p>
+        </div>
+        <div class="prod-tasa">
+          <span>Rentabilidad</span>
+          <strong>{{ p.tasa }}</strong>
+        </div>
+        <button class="btn btn-outline btn-sm">Ver más</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="pasos-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-list-ol"></i> ¿Cómo empezar?</span>
+      <h2 class="section-title">Empieza a invertir en 4 pasos</h2>
+    </div>
+    <div class="pasos-grid">
+      <div class="paso" *ngFor="let p of pasos">
+        <span class="paso-n">{{ p.n }}</span>
+        <h4>{{ p.title }}</h4>
+        <p>{{ p.desc }}</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="disclaimer card">
+    <i class="fa-solid fa-circle-info"></i>
+    <p>Las rentabilidades mostradas corresponden a rendimientos históricos a 12 meses y no constituyen garantía de rentabilidades futuras. Invertir implica riesgos. Antes de invertir, lea el prospecto del fondo disponible en <strong>cmfchile.cl</strong>. SpringBank S.A. está regulado por la CMF.</p>
+  </div>
+
+</main>
+
+<app-public-footer />

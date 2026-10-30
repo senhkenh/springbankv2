@@ -1,0 +1,77 @@
+<app-public-navbar />
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a routerLink="/">Inicio</a><i class="fa-solid fa-chevron-right"></i><span>Centro de Ayuda</span></div>
+    <h1>Centro de Ayuda</h1>
+    <p>¿En qué podemos ayudarte hoy?</p>
+  </div>
+</div>
+
+<main class="page-content">
+
+  <!-- CANALES DE CONTACTO -->
+  <section class="canales-section">
+    <div class="canales-grid">
+      <div class="canal-card" *ngFor="let c of canales">
+        <div class="canal-icon" [style.color]="c.color" [style.background]="c.color + '18'">
+          <i [class]="c.icon"></i>
+        </div>
+        <h3>{{ c.title }}</h3>
+        <strong>{{ c.info }}</strong>
+        <p>{{ c.sub }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORÍAS -->
+  <section class="categorias-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-grid-2"></i> Temas</span>
+      <h2 class="section-title">Explora por categoría</h2>
+    </div>
+    <div class="categorias-grid">
+      <a class="cat-card" *ngFor="let c of categorias" href="#">
+        <div class="cat-icon"><i [class]="c.icon"></i></div>
+        <div>
+          <h4>{{ c.title }}</h4>
+          <p>{{ c.desc }}</p>
+        </div>
+        <i class="fa-solid fa-chevron-right cat-arrow"></i>
+      </a>
+    </div>
+  </section>
+
+  <!-- PREGUNTAS FRECUENTES -->
+  <section class="faq-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-circle-question"></i> FAQ</span>
+      <h2 class="section-title">Preguntas frecuentes</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let f of faqs; let i = index" [class.open]="faqAbierto === i">
+        <button class="faq-q" (click)="toggle(i)">
+          <span class="faq-cat badge badge-blue">{{ f.cat }}</span>
+          {{ f.q }}
+          <i [class]="faqAbierto === i ? 'fa-solid fa-minus' : 'fa-solid fa-plus'"></i>
+        </button>
+        <div class="faq-a" *ngIf="faqAbierto === i"><p>{{ f.a }}</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA CONTACTO -->
+  <div class="contact-cta card">
+    <div>
+      <h3>¿No encontraste lo que buscabas?</h3>
+      <p>Nuestro equipo de atención al cliente está disponible para ayudarte.</p>
+    </div>
+    <div class="cta-btns">
+      <a href="tel:6006001000" class="btn btn-primary"><i class="fa-solid fa-phone"></i> Llamar ahora</a>
+      <a href="mailto:ayuda@springbank.cl" class="btn btn-outline"><i class="fa-solid fa-envelope"></i> Enviar email</a>
+    </div>
+  </div>
+
+</main>
+
+<app-public-footer />

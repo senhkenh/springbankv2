@@ -1,0 +1,82 @@
+<app-public-navbar />
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a routerLink="/">Inicio</a><i class="fa-solid fa-chevron-right"></i><span>Tarjetas</span>
+    </div>
+    <h1>Tarjetas de Crédito</h1>
+    <p>Elige la tarjeta que se adapta a tu estilo de vida. Sin letra chica, con beneficios reales.</p>
+  </div>
+</div>
+
+<main class="page-content">
+
+  <!-- TARJETAS -->
+  <section class="tarjetas-grid-section">
+    <div class="tarjetas-grid">
+      <div class="tarjeta-card" *ngFor="let t of tarjetas" [class.destacada]="t.destacada">
+        <div class="tarjeta-visual" [style.background]="t.color">
+          <div class="tv-top">
+            <span class="tv-banco">SpringBank</span>
+            <i class="fa-brands fa-cc-visa tv-logo"></i>
+          </div>
+          <div class="tv-chip"><i class="fa-solid fa-microchip"></i></div>
+          <div class="tv-number">•••• •••• •••• 4821</div>
+          <div class="tv-bottom">
+            <span>TITULAR</span>
+            <span>{{ t.tipo }}</span>
+          </div>
+        </div>
+        <div class="tarjeta-info">
+          <div class="badge badge-blue" *ngIf="t.destacada"><i class="fa-solid fa-fire"></i> Más solicitada</div>
+          <h3>{{ t.nombre }}</h3>
+          <div class="tarjeta-stats">
+            <div class="ts"><span>Cuotas sin interés</span><strong>{{ t.cuotas }}</strong></div>
+            <div class="ts"><span>CashBack</span><strong>{{ t.cashback }}</strong></div>
+            <div class="ts"><span>Anualidad</span><strong>{{ t.anualidad }}</strong></div>
+          </div>
+          <ul>
+            <li *ngFor="let b of t.beneficios"><i class="fa-solid fa-check"></i>{{ b }}</li>
+          </ul>
+          <button class="btn btn-primary btn-full">Solicitar tarjeta</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-star"></i> Beneficios</span>
+      <h2 class="section-title">Protección y beneficios en cada compra</h2>
+    </div>
+    <div class="beneficios-grid">
+      <div class="bene-item" *ngFor="let b of beneficios">
+        <div class="bene-icon"><i [class]="b.icon"></i></div>
+        <h4>{{ b.title }}</h4>
+        <p>{{ b.desc }}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-circle-question"></i> Preguntas frecuentes</span>
+      <h2 class="section-title">Resolvemos tus dudas</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" *ngFor="let f of faqs; let i = index" [class.open]="faqAbierto === i">
+        <button class="faq-q" (click)="toggle(i)">
+          {{ f.q }}
+          <i [class]="faqAbierto === i ? 'fa-solid fa-minus' : 'fa-solid fa-plus'"></i>
+        </button>
+        <div class="faq-a" *ngIf="faqAbierto === i"><p>{{ f.a }}</p></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<app-public-footer />

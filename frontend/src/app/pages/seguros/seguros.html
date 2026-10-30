@@ -1,0 +1,43 @@
+<app-public-navbar />
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a routerLink="/">Inicio</a><i class="fa-solid fa-chevron-right"></i><span>Seguros</span></div>
+    <h1>Seguros</h1>
+    <p>Protege lo que más importa con coberturas diseñadas para cada etapa de tu vida.</p>
+  </div>
+</div>
+
+<main class="page-content">
+  <div class="section-header" style="margin-bottom:40px;">
+    <span class="section-label"><i class="fa-solid fa-shield-halved"></i> Nuestros seguros</span>
+    <h2 class="section-title">Cobertura completa para ti y tu familia</h2>
+    <p class="section-subtitle">Todos nuestros seguros incluyen atención 24/7 y contratación 100% en línea.</p>
+  </div>
+
+  <div class="seguros-grid">
+    <div class="seguro-card" *ngFor="let s of seguros">
+      <div class="seg-header">
+        <div class="seg-icon" [style.background]="s.bg" [style.color]="s.color"><i [class]="s.icon"></i></div>
+        <div>
+          <h3>{{ s.title }}</h3>
+          <span class="seg-precio">{{ s.precio }}</span>
+        </div>
+      </div>
+      <p>{{ s.desc }}</p>
+      <ul>
+        <li *ngFor="let c of s.coberturas"><i class="fa-solid fa-check"></i>{{ c }}</li>
+      </ul>
+      <button class="btn btn-outline btn-sm btn-full">Contratar seguro</button>
+    </div>
+  </div>
+
+  <div class="trust-bar">
+    <div class="trust-item"><i class="fa-solid fa-award"></i><div><strong>+500.000</strong><span>asegurados</span></div></div>
+    <div class="trust-item"><i class="fa-solid fa-clock"></i><div><strong>24/7</strong><span>atención de siniestros</span></div></div>
+    <div class="trust-item"><i class="fa-solid fa-bolt"></i><div><strong>48 hrs</strong><span>resolución promedio</span></div></div>
+    <div class="trust-item"><i class="fa-solid fa-star"></i><div><strong>4.7/5</strong><span>satisfacción clientes</span></div></div>
+  </div>
+</main>
+
+<app-public-footer />

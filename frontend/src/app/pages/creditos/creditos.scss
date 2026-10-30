@@ -1,0 +1,60 @@
+.creditos-grid-section { margin-bottom: 72px; }
+.creditos-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+
+.credito-card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px;
+  display: flex; flex-direction: column; gap: 12px;
+  transition: box-shadow 0.2s;
+  &:hover { box-shadow: 0 8px 24px rgba(0,41,255,0.08); }
+  .credito-icon { width: 52px; height: 52px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  h3 { font-size: 16px; font-weight: 700; }
+  p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; flex: 1; }
+  .credito-meta { display: flex; flex-direction: column; gap: 8px; padding: 12px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+    div { display: flex; justify-content: space-between; align-items: center;
+      span { font-size: 11px; color: var(--text-secondary); }
+      strong { font-size: 13px; font-weight: 700; }
+    }
+  }
+}
+
+.simulador-section { margin-bottom: 72px; }
+
+.simulador-card {
+  .sim-header { margin-bottom: 32px; }
+  .sim-body { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .sim-controls { display: flex; flex-direction: column; gap: 28px; }
+  .sim-field { label { margin-bottom: 12px; } }
+  .range-wrap {
+    input[type=range] {
+      width: 100%; height: 4px; accent-color: var(--primary);
+      background: var(--border); border-radius: 2px; border: none; padding: 0; cursor: pointer;
+    }
+    .range-labels { display: flex; justify-content: space-between; margin-top: 8px; font-size: 11px; color: var(--text-secondary);
+      .range-val { font-weight: 700; color: var(--primary); }
+    }
+  }
+  .sim-result {
+    background: var(--bg); border-radius: 10px; padding: 28px;
+    display: flex; flex-direction: column; gap: 20px;
+    .sim-cuota { text-align: center; padding-bottom: 20px; border-bottom: 1px solid var(--border);
+      span { display: block; font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 8px; }
+      strong { font-size: 40px; font-weight: 900; color: var(--primary); }
+    }
+    .sim-desglose { display: flex; flex-direction: column; gap: 10px;
+      div { display: flex; justify-content: space-between;
+        span { font-size: 13px; color: var(--text-secondary); }
+        strong { font-size: 13px; font-weight: 700; }
+      }
+    }
+    .sim-disclaimer { font-size: 11px; color: var(--text-secondary); text-align: center; }
+  }
+}
+
+.requisitos-section { .section-header { margin-bottom: 32px; } }
+.requisitos-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; }
+.req-item {
+  background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px;
+  .req-icon { width: 44px; height: 44px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 18px; margin-bottom: 14px; }
+  h4 { font-size: 14px; font-weight: 700; margin-bottom: 6px; }
+  p { font-size: 13px; color: var(--text-secondary); line-height: 1.6; }
+}

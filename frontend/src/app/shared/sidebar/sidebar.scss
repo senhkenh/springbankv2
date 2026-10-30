@@ -1,0 +1,175 @@
+.bank-sidebar {
+  width: 240px;
+  min-height: 100vh;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  overflow-y: auto;
+}
+
+// ── Brand ────────────────────────────────────────────────────────
+.sidebar-brand {
+  padding: 22px 20px 16px;
+  border-bottom: 1px solid var(--border);
+
+  .brand-logo {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    text-decoration: none;
+    margin-bottom: 6px;
+    i { font-size: 20px; color: var(--primary); }
+    span { font-size: 17px; font-weight: 800; color: var(--navy); letter-spacing: -0.3px; }
+    &:hover { opacity: 0.85; }
+  }
+
+  .brand-tag {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+  }
+}
+
+// ── User card ────────────────────────────────────────────────────
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+
+  .user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--primary);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .user-info {
+    flex: 1;
+    min-width: 0;
+    strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    span {
+      font-size: 11px;
+      color: var(--text-secondary);
+    }
+  }
+
+  .user-badge {
+    color: var(--success);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+}
+
+// ── Nav ──────────────────────────────────────────────────────────
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.nav-group-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  padding: 10px 8px 6px;
+  display: block;
+
+  &:first-child { padding-top: 0; }
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 7px;
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  transition: all 0.15s;
+
+  .nav-icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 6px;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: all 0.15s;
+  }
+
+  &:hover {
+    background: var(--bg);
+    color: var(--text);
+    .nav-icon { background: var(--primary-light); color: var(--primary); }
+  }
+
+  &.active {
+    background: var(--primary-light);
+    color: var(--primary);
+    font-weight: 600;
+    .nav-icon { background: var(--primary); color: white; }
+  }
+}
+
+// ── Footer ───────────────────────────────────────────────────────
+.sidebar-footer {
+  padding: 16px 12px;
+  border-top: 1px solid var(--border);
+}
+
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 9px 10px;
+  border-radius: 7px;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 13.5px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s;
+
+  i { font-size: 13px; }
+
+  &:hover {
+    background: #fee2e2;
+    color: var(--danger);
+  }
+}

@@ -1,0 +1,92 @@
+<app-public-navbar />
+
+<div class="page-hero">
+  <div class="container">
+    <div class="breadcrumb"><a routerLink="/">Inicio</a><i class="fa-solid fa-chevron-right"></i><span>Créditos</span></div>
+    <h1>Créditos</h1>
+    <p>Financiamiento para cada etapa de tu vida, con las tasas más competitivas del mercado.</p>
+  </div>
+</div>
+
+<main class="page-content">
+
+  <!-- TIPOS DE CRÉDITO -->
+  <section class="creditos-grid-section">
+    <div class="creditos-grid">
+      <div class="credito-card" *ngFor="let c of creditos">
+        <div class="credito-icon" [style.background]="c.bg" [style.color]="c.color"><i [class]="c.icon"></i></div>
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.desc }}</p>
+        <div class="credito-meta">
+          <div><span>Tasa mensual</span><strong>{{ c.tasa }}</strong></div>
+          <div><span>Plazo</span><strong>{{ c.plazo }}</strong></div>
+          <div><span>Monto</span><strong>{{ c.monto }}</strong></div>
+        </div>
+        <button class="btn btn-outline btn-full btn-sm">Solicitar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SIMULADOR -->
+  <section class="simulador-section">
+    <div class="simulador-card card">
+      <div class="sim-header">
+        <div>
+          <span class="section-label"><i class="fa-solid fa-calculator"></i> Simulador</span>
+          <h2 class="section-title">Simula tu crédito</h2>
+          <p class="section-subtitle">Calcula tu cuota mensual de forma rápida y sin compromiso.</p>
+        </div>
+      </div>
+      <div class="sim-body">
+        <div class="sim-controls">
+          <div class="sim-field">
+            <label>Monto a solicitar</label>
+            <div class="range-wrap">
+              <input type="range" [(ngModel)]="monto" min="500000" max="30000000" step="500000" />
+              <div class="range-labels"><span>$500.000</span><span class="range-val">${{ monto | number }}</span><span>$30.000.000</span></div>
+            </div>
+          </div>
+          <div class="sim-field">
+            <label>Plazo en meses</label>
+            <div class="range-wrap">
+              <input type="range" [(ngModel)]="plazo" min="6" max="72" step="6" />
+              <div class="range-labels"><span>6 meses</span><span class="range-val">{{ plazo }} meses</span><span>72 meses</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="sim-result">
+          <div class="sim-cuota">
+            <span>Cuota mensual estimada</span>
+            <strong>${{ cuota | number }}</strong>
+          </div>
+          <div class="sim-desglose">
+            <div><span>Monto solicitado</span><strong>${{ monto | number }}</strong></div>
+            <div><span>Total a pagar</span><strong>${{ totalPagar | number }}</strong></div>
+            <div><span>Total intereses</span><strong>${{ totalIntereses | number }}</strong></div>
+            <div><span>Tasa mensual</span><strong>0,89%</strong></div>
+          </div>
+          <button class="btn btn-primary btn-full">Solicitar este crédito</button>
+          <p class="sim-disclaimer">Simulación referencial. La tasa final depende de tu perfil crediticio.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REQUISITOS -->
+  <section class="requisitos-section">
+    <div class="section-header">
+      <span class="section-label"><i class="fa-solid fa-list-check"></i> Requisitos</span>
+      <h2 class="section-title">¿Qué necesitas para solicitar?</h2>
+    </div>
+    <div class="requisitos-grid">
+      <div class="req-item" *ngFor="let r of requisitos">
+        <div class="req-icon"><i [class]="r.icon"></i></div>
+        <h4>{{ r.title }}</h4>
+        <p>{{ r.desc }}</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<app-public-footer />

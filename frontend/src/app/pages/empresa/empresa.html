@@ -1,0 +1,203 @@
+<div class="empresa-page">
+
+  <!-- NAVBAR -->
+  <nav class="emp-nav">
+    <div class="nav-inner">
+      <a class="brand" routerLink="/"><i class="fa-solid fa-landmark"></i><span>SpringBank</span></a>
+      <ul class="nav-links">
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#beneficios">Beneficios</a></li>
+        <li><a href="#planes">Planes</a></li>
+        <li><a href="#testimonios">Clientes</a></li>
+      </ul>
+      <div class="nav-actions">
+        <a routerLink="/" class="btn-outline-white"><i class="fa-solid fa-house"></i> Inicio</a>
+        <a routerLink="/login" class="btn-white"><i class="fa-solid fa-right-to-bracket"></i> Banca Empresa</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <img src="foto6.jpg" alt="Banca Empresa SpringBank" class="hero-bg" />
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-tag"><i class="fa-solid fa-building"></i> Banca Empresa</span>
+      <h1>Soluciones financieras<br><span>para hacer crecer<br>tu negocio</span></h1>
+      <p>Desde pymes hasta grandes corporaciones, SpringBank tiene los productos y el equipo para acompañar cada etapa de tu empresa.</p>
+      <div class="hero-btns">
+        <a href="#productos" class="btn-primary-lg"><i class="fa-solid fa-rocket"></i> Ver productos</a>
+        <a href="#planes" class="btn-ghost"><i class="fa-solid fa-phone"></i> Hablar con un ejecutivo</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><strong>+50.000</strong><span><i class="fa-solid fa-building"></i> empresas</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>$2.000M</strong><span><i class="fa-solid fa-dollar-sign"></i> financiados</span></div>
+        <div class="stat-divider"></div>
+        <div class="stat"><strong>50+</strong><span><i class="fa-solid fa-globe"></i> países</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="productos" id="productos">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-briefcase"></i> Nuestros productos</span>
+        <h2>Todo lo que tu empresa necesita</h2>
+        <p>Productos diseñados para optimizar la gestión financiera de tu negocio</p>
+      </div>
+      <div class="productos-grid">
+        <div class="producto-card" *ngFor="let p of productos">
+          <div class="prod-icon" [style.background]="p.bg" [style.color]="p.color">
+            <i [class]="p.icon"></i>
+          </div>
+          <h3>{{ p.title }}</h3>
+          <p>{{ p.desc }}</p>
+          <ul>
+            <li *ngFor="let f of p.features"><i class="fa-solid fa-check"></i> {{ f }}</li>
+          </ul>
+          <button class="btn-prod">Solicitar <i class="fa-solid fa-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFICIOS -->
+  <section class="beneficios" id="beneficios">
+    <div class="section-inner">
+      <div class="bene-left">
+        <span class="section-tag light"><i class="fa-solid fa-star"></i> ¿Por qué SpringBank?</span>
+        <h2>El banco que entiende<br>tu negocio</h2>
+        <p>Más de 30 años acompañando a empresas chilenas en su crecimiento. Conocemos los desafíos del mercado y tenemos las soluciones.</p>
+        <a href="#planes" class="btn-primary-lg" style="display:inline-flex; align-items:center; gap:8px; text-decoration:none; margin-top:8px;">
+          <i class="fa-solid fa-handshake"></i> Ser cliente empresa
+        </a>
+      </div>
+      <div class="bene-right">
+        <div class="bene-card" *ngFor="let b of beneficios">
+          <div class="bene-icon"><i [class]="b.icon"></i></div>
+          <div>
+            <h4>{{ b.title }}</h4>
+            <p>{{ b.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANES -->
+  <section class="planes" id="planes">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-tags"></i> Planes</span>
+        <h2>Elige el plan para tu empresa</h2>
+        <p>Sin letra chica. Cambia o cancela cuando quieras.</p>
+      </div>
+      <div class="planes-grid">
+        <div class="plan-card" *ngFor="let p of planes" [class.destacado]="p.destacado">
+          <div class="plan-badge" *ngIf="p.destacado"><i class="fa-solid fa-fire"></i> Más popular</div>
+          <h3>{{ p.nombre }}</h3>
+          <div class="plan-precio">
+            <span class="precio">{{ p.precio }}</span>
+            <span class="periodo">{{ p.periodo }}</span>
+          </div>
+          <p class="plan-desc">{{ p.desc }}</p>
+          <ul>
+            <li *ngFor="let f of p.features"><i class="fa-solid fa-check"></i> {{ f }}</li>
+          </ul>
+          <button [class]="p.destacado ? 'btn-plan-primary' : 'btn-plan-outline'">
+            Comenzar ahora <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios" id="testimonios">
+    <div class="section-inner">
+      <div class="section-header">
+        <span class="section-tag"><i class="fa-solid fa-quote-left"></i> Testimonios</span>
+        <h2>Lo que dicen nuestros clientes empresa</h2>
+      </div>
+      <div class="testi-grid">
+        <div class="testi-card" *ngFor="let t of testimonios">
+          <div class="stars">
+            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+          </div>
+          <p>"{{ t.text }}"</p>
+          <div class="testi-author">
+            <div class="avatar">{{ t.inicial }}</div>
+            <div>
+              <strong>{{ t.name }}</strong>
+              <span>{{ t.role }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="cta-inner">
+      <i class="fa-solid fa-handshake cta-icon"></i>
+      <h2>¿Listo para llevar tu empresa al siguiente nivel?</h2>
+      <p>Un ejecutivo especializado te contactará en menos de 2 horas hábiles</p>
+      <div class="cta-form">
+        <input type="text" placeholder="Nombre de tu empresa" />
+        <input type="tel" placeholder="Teléfono de contacto" />
+        <button class="btn-cta"><i class="fa-solid fa-paper-plane"></i> Quiero que me contacten</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="emp-footer">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <i class="fa-solid fa-landmark"></i>
+          <span>SpringBank</span>
+        </div>
+        <p>Banco regulado por la CMF.<br>Depósitos garantizados por el Estado.</p>
+        <div class="social-links">
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+          <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h5>Productos</h5>
+        <a href="#"><i class="fa-solid fa-building-columns"></i> Cuenta Empresa</a>
+        <a href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Factoring</a>
+        <a href="#"><i class="fa-solid fa-truck"></i> Leasing</a>
+        <a href="#"><i class="fa-solid fa-ship"></i> Comercio Exterior</a>
+      </div>
+      <div class="footer-col">
+        <h5>Empresa</h5>
+        <a href="#"><i class="fa-solid fa-circle-info"></i> Sobre nosotros</a>
+        <a href="#"><i class="fa-solid fa-newspaper"></i> Noticias</a>
+        <a href="#"><i class="fa-solid fa-briefcase"></i> Trabaja con nosotros</a>
+        <a href="#"><i class="fa-solid fa-handshake"></i> Alianzas</a>
+      </div>
+      <div class="footer-col">
+        <h5>Contacto</h5>
+        <a href="#"><i class="fa-solid fa-phone"></i> 600 600 1000</a>
+        <a href="#"><i class="fa-solid fa-envelope"></i> empresas&#64;springbank.cl</a>
+        <a href="#"><i class="fa-solid fa-map-location-dot"></i> Sucursales</a>
+        <a href="#"><i class="fa-solid fa-headset"></i> Soporte 24/7</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 SpringBank Empresas. Todos los derechos reservados.</p>
+      <div class="footer-legal">
+        <a href="#">Privacidad</a>
+        <a href="#">Términos</a>
+        <a href="#">Cookies</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
