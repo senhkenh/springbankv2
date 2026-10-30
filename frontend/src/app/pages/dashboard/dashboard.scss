@@ -1,70 +1,277 @@
-.dashboard {
-  max-width: 1100px;
-  margin: 32px auto;
-  padding: 0 24px;
-}
-
-.welcome {
+// ── Layout ───────────────────────────────────────────────────────
+.banking-layout {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 28px;
-  h2 { font-size: 24px; }
-  p { color: var(--muted); margin-top: 4px; }
+  min-height: 100vh;
+  background: var(--bg);
 }
 
+.banking-main {
+  flex: 1;
+  margin-left: 240px;
+  padding: 0;
+  min-width: 0;
+}
+
+// ── Top bar ──────────────────────────────────────────────────────
+.banking-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+
+  .topbar-left {
+    h1 { font-size: 20px; font-weight: 800; color: var(--navy); }
+    p  { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  }
+}
+
+// ── Summary cards ────────────────────────────────────────────────
 .summary-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 16px;
-  margin-bottom: 28px;
+  padding: 24px 32px 0;
 }
 
 .summary-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 20px;
   display: flex;
-  align-items: center;
-  gap: 16px;
-  .icon { font-size: 28px; width: 56px; height: 56px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
-  .label { font-size: 13px; color: var(--muted); }
-  .value { font-size: 20px; font-weight: 700; margin-top: 2px; }
+  align-items: flex-start;
+  gap: 14px;
+
+  .sc-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 17px;
+    flex-shrink: 0;
+  }
+
+  .sc-body {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .sc-label {
+    font-size: 11px;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+  }
+
+  .sc-value {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .sc-sub {
+    font-size: 11px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    &.positive { color: var(--success); }
+    &.negative { color: var(--danger); }
+  }
 }
 
-.transactions {
-  .tx-header {
+// ── Dashboard grid ───────────────────────────────────────────────
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 16px;
+  padding: 16px 32px;
+
+  .card {
+    border-radius: 10px;
+  }
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
-    h3 { font-size: 18px; }
-    a { color: var(--primary); font-size: 13px; text-decoration: none; font-weight: 600; }
+    gap: 8px;
+    i { color: var(--primary); font-size: 13px; }
   }
 
-  .tx-list { display: flex; flex-direction: column; gap: 12px; }
-
-  .tx-item {
+  .card-link {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 12px 0;
-    border-bottom: 1px solid #f0f0f0;
-    &:last-child { border-bottom: none; }
+    gap: 5px;
+    i { font-size: 10px; }
+    &:hover { color: var(--primary-dark); }
+  }
+}
+
+// ── Transactions ─────────────────────────────────────────────────
+.tx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.tx-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  &:last-child { border-bottom: none; }
+}
+
+.tx-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  flex-shrink: 0;
+  &.credit { background: #dcfce7; color: var(--success); }
+  &.debit  { background: #fee2e2; color: var(--danger); }
+}
+
+.tx-info {
+  flex: 1;
+  min-width: 0;
+  .tx-desc { display: block; font-size: 13px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tx-meta { display: block; font-size: 11px; color: var(--text-secondary); margin-top: 2px; }
+}
+
+.tx-amount {
+  font-size: 13px;
+  font-weight: 700;
+  white-space: nowrap;
+  &.credit { color: var(--success); }
+  &.debit  { color: var(--danger); }
+}
+
+// ── Account list ─────────────────────────────────────────────────
+.account-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: 16px;
+}
+
+.account-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+  &:last-child { border-bottom: none; }
+
+  .acc-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
   }
 
-  .tx-icon {
-    width: 40px; height: 40px; border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 18px; font-weight: 700;
-    &.credit { background: #dcfce7; color: var(--success); }
-    &.debit { background: #fee2e2; color: var(--danger); }
+  .acc-info {
+    flex: 1;
+    .acc-name   { display: block; font-size: 13px; font-weight: 600; }
+    .acc-number { display: block; font-size: 11px; color: var(--text-secondary); margin-top: 1px; }
   }
 
-  .tx-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-  .tx-desc { font-size: 14px; font-weight: 500; }
-  .tx-date { font-size: 12px; color: var(--muted); }
+  .acc-balance {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text);
+  }
+}
 
-  .tx-amount {
-    font-weight: 700; font-size: 15px;
-    &.credit { color: var(--success); }
-    &.debit { color: var(--danger); }
+.account-total {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: var(--bg);
+  border-radius: 7px;
+  span  { font-size: 12px; color: var(--text-secondary); font-weight: 600; }
+  strong { font-size: 16px; font-weight: 800; color: var(--primary); }
+}
+
+// ── Quick actions ─────────────────────────────────────────────────
+.quick-actions {
+  padding: 0 32px 32px;
+
+  h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+}
+
+.qa-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 12px;
+}
+
+.qa-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 8px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  text-align: center;
+  transition: all 0.15s;
+
+  .qa-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 9px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+
+  &:hover {
+    border-color: var(--primary);
+    box-shadow: 0 4px 12px rgba(0,41,255,0.08);
+    transform: translateY(-1px);
   }
 }

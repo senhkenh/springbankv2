@@ -1,42 +1,102 @@
-<div class="accounts-page">
-  <h2>Mis Cuentas</h2>
+<div class="banking-layout">
+  <app-sidebar />
 
-  <div class="accounts-grid">
-    <div class="account-card" *ngFor="let acc of accounts" [style.border-top]="'4px solid ' + acc.color">
-      <div class="acc-top">
-        <span class="acc-type" [style.color]="acc.color">{{ acc.type }}</span>
-        <span class="acc-number">{{ acc.number }}</span>
+  <div class="banking-main">
+
+    <!-- Top bar -->
+    <header class="banking-topbar">
+      <div class="topbar-left">
+        <h1>Mis Cuentas</h1>
+        <p>Administra y consulta todos tus productos</p>
       </div>
-      <p class="acc-name">{{ acc.name }}</p>
-      <p class="acc-balance">{{ acc.balance | currency:'USD':'symbol':'1.2-2' }}</p>
-      <div class="acc-actions">
-        <button class="btn-outline">Detalles</button>
-        <button class="btn-primary">Transferir</button>
+      <div class="topbar-actions">
+        <a routerLink="/transfer" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-right-left"></i> Transferir
+        </a>
       </div>
+    </header>
+
+    <div class="banking-content">
+
+      <!-- Tarjetas de cuentas -->
+      <section class="accounts-grid">
+        <div class="account-card" *ngFor="let acc of accounts; let i = index"
+             [class.active]="selectedAccount === i"
+             (click)="selectAccount(i)">
+          <div class="ac-header">
+            <div class="ac-type-badge" [style.background]="acc.color + '18'" [style.color]="acc.color">
+              {{ acc.type }}
+            </div>
+            <i class="fa-solid fa-chevron-right ac-arrow"></i>
+          </div>
+          <div class="ac-number">{{ acc.number }}</div>
+          <div class="ac-name">{{ acc.name }}</div>
+          <div class="ac-balance">{{ acc.balance | currency:'CLP':'symbol-narrow':'1.0-0' }}</div>
+          <div class="ac-bar" [style.background]="acc.color"></div>
+        </div>
+      </section>
+
+      <!-- Movimientos -->
+      <section class="card movements-card">
+        <div class="card-header">
+          <div>
+            <h3><i class="fa-solid fa-clock-rotate-left"></i> Movimientos recientes</h3>
+            <p class="card-subtitle">{{ accounts[selectedAccount]?.name }} · {{ accounts[selectedAccount]?.number }}</p>
+          </div>
+          <div class="movements-filters">
+            <button class="filter-btn" [class.active]="filterType==='all'"    (click)="filterType='all'">Todos</button>
+            <button class="filter-btn" [class.active]="filterType==='credit'" (click)="filterType='credit'">Abonos</button>
+            <button class="filter-btn" [class.active]="filterType==='debit'"  (click)="filterType='debit'">Cargos</button>
+          </div>
+        </div>
+
+        <table class="movements-table">
+          <thead>
+            <tr>
+              <th>Descripción</th>
+              <th>Fecha</th>
+              <th>Tipo</th>
+              <th class="text-right">Monto</th>
+              <th class="text-right">Saldo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let m of filteredMovements">
+              <td>
+                <div class="mov-desc">
+                  <div class="mov-icon" [class.credit]="m.type==='credit'" [class.debit]="m.type==='debit'">
+                    <i [class]="m.type==='credit' ? 'fa-solid fa-arrow-down-long' : 'fa-solid fa-arrow-up-long'"></i>
+                  </div>
+                  <div>
+                    <span class="mov-title">{{ m.desc }}</span>
+                    <span class="mov-sub">{{ m.category }}</span>
+                  </div>
+                </div>
+              </td>
+              <td class="mov-date">{{ m.date }}</td>
+              <td>
+                <span class="badge" [class.badge-green]="m.type==='credit'" [class.badge-red]="m.type==='debit'">
+                  {{ m.type==='credit' ? 'Abono' : 'Cargo' }}
+                </span>
+              </td>
+              <td class="text-right">
+                <span class="mov-amount" [class.credit]="m.type==='credit'" [class.debit]="m.type==='debit'">
+                  {{ m.type==='credit' ? '+' : '-' }}{{ m.amount | currency:'CLP':'symbol-narrow':'1.0-0' }}
+                </span>
+              </td>
+              <td class="text-right mov-balance">
+                {{ m.balance | currency:'CLP':'symbol-narrow':'1.0-0' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="movements-empty" *ngIf="filteredMovements.length === 0">
+          <i class="fa-solid fa-inbox"></i>
+          <p>No hay movimientos para este filtro</p>
+        </div>
+      </section>
+
     </div>
-  </div>
-
-  <div class="card movements">
-    <h3>Movimientos recientes</h3>
-    <table>
-      <thead>
-        <tr>
-          <th>Descripción</th>
-          <th>Fecha</th>
-          <th>Cuenta</th>
-          <th>Monto</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let m of movements">
-          <td>{{ m.desc }}</td>
-          <td>{{ m.date }}</td>
-          <td><span class="badge">{{ m.account }}</span></td>
-          <td [class.credit]="m.amount > 0" [class.debit]="m.amount < 0">
-            {{ m.amount > 0 ? '+' : '' }}{{ m.amount | currency:'USD':'symbol':'1.2-2' }}
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>

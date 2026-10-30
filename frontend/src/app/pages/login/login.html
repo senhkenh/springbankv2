@@ -34,8 +34,8 @@
 
       <form (ngSubmit)="login()">
         <div class="field">
-          <label><i class="fa-solid fa-envelope"></i> Correo electrónico</label>
-          <input type="email" [(ngModel)]="email" name="email" placeholder="usuario@springbank.cl" />
+          <label><i class="fa-solid fa-user"></i> Usuario</label>
+          <input type="text" [(ngModel)]="username" name="username" placeholder="Ingresa tu usuario o RUT" />
         </div>
         <div class="field">
           <label><i class="fa-solid fa-lock"></i> Contraseña</label>
@@ -57,8 +57,9 @@
 
         <p class="error-msg" *ngIf="error"><i class="fa-solid fa-circle-exclamation"></i> {{ error }}</p>
 
-        <button type="submit" class="btn-submit">
-          <i class="fa-solid fa-right-to-bracket"></i> Ingresar
+        <button type="submit" class="btn-submit" [disabled]="loading">
+          <i [class]="loading ? 'fa-solid fa-spinner fa-spin' : 'fa-solid fa-right-to-bracket'"></i> 
+          {{ loading ? 'Ingresando...' : 'Ingresar' }}
         </button>
       </form>
 

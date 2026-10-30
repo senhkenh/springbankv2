@@ -1,14 +1,31 @@
 import { Routes } from '@angular/router';
-import { Home } from './pages/home/home';
-import { Login } from './pages/login/login';
-import { Dashboard } from './pages/dashboard/dashboard';
-import { Accounts } from './pages/accounts/accounts';
-import { Transfer } from './pages/transfer/transfer';
+import { Home }        from './pages/home/home';
+import { Login }       from './pages/login/login';
+import { Empresa }     from './pages/empresa/empresa';
+import { Tarjetas }    from './pages/tarjetas/tarjetas';
+import { Inversiones } from './pages/inversiones/inversiones';
+import { Creditos }    from './pages/creditos/creditos';
+import { Seguros }     from './pages/seguros/seguros';
+import { Terminos }    from './pages/terminos/terminos';
+import { Privacidad }  from './pages/privacidad/privacidad';
+import { Ayuda }       from './pages/ayuda/ayuda';
+import { Dashboard }   from './pages/dashboard/dashboard';
+import { Accounts }    from './pages/accounts/accounts';
+import { Transfer }    from './pages/transfer/transfer';
 
 export const routes: Routes = [
-  { path: '', component: Home },
-  { path: 'login', component: Login },
-  { path: 'dashboard', component: Dashboard },
-  { path: 'accounts', component: Accounts },
-  { path: 'transfer', component: Transfer },
+  { path: '',            component: Home },
+  { path: 'login',       component: Login },
+  { path: 'empresa',     component: Empresa },
+  { path: 'tarjetas',    component: Tarjetas },
+  { path: 'inversiones', component: Inversiones },
+  { path: 'creditos',    component: Creditos },
+  { path: 'seguros',     component: Seguros },
+  { path: 'terminos',    component: Terminos },
+  { path: 'privacidad',  component: Privacidad },
+  { path: 'ayuda',       component: Ayuda },
+  { path: 'dashboard',   component: Dashboard },
+  { path: 'accounts',    component: Accounts },
+  { path: 'transfer',    component: Transfer },
+  { path: '**',          redirectTo: '' },
 ];

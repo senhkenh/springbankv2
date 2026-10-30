@@ -1,40 +1,99 @@
-<div class="dashboard">
-  <div class="welcome">
-    <div>
-      <h2>Hola, {{ user }} 👋</h2>
-      <p>Aquí está el resumen de tu cuenta</p>
-    </div>
-    <button class="btn-primary" routerLink="/transfer">Nueva transferencia</button>
-  </div>
+<div class="banking-layout">
+  <app-sidebar />
 
-  <div class="summary-grid">
-    <div class="summary-card card" *ngFor="let s of summary">
-      <div class="icon" [style.background]="s.color + '1a'" [style.color]="s.color">{{ s.icon }}</div>
-      <div>
-        <p class="label">{{ s.label }}</p>
-        <p class="value">{{ s.value | currency:'USD':'symbol':'1.2-2' }}</p>
-      </div>
-    </div>
-  </div>
+  <div class="banking-main">
 
-  <div class="card transactions">
-    <div class="tx-header">
-      <h3>Últimas transacciones</h3>
-      <a routerLink="/accounts">Ver todas</a>
-    </div>
-    <div class="tx-list">
-      <div class="tx-item" *ngFor="let tx of transactions">
-        <div class="tx-icon" [class.credit]="tx.type === 'credit'" [class.debit]="tx.type === 'debit'">
-          {{ tx.type === 'credit' ? '↓' : '↑' }}
-        </div>
-        <div class="tx-info">
-          <span class="tx-desc">{{ tx.desc }}</span>
-          <span class="tx-date">{{ tx.date }}</span>
-        </div>
-        <span class="tx-amount" [class.credit]="tx.type === 'credit'" [class.debit]="tx.type === 'debit'">
-          {{ tx.amount > 0 ? '+' : '' }}{{ tx.amount | currency:'USD':'symbol':'1.2-2' }}
-        </span>
+    <!-- Top bar -->
+    <header class="banking-topbar">
+      <div class="topbar-left">
+        <h1>Resumen</h1>
+        <p>Viernes 30 de octubre, 2026</p>
       </div>
+      <div class="topbar-actions">
+        <a routerLink="/transfer" class="btn btn-primary btn-sm">
+          <i class="fa-solid fa-right-left"></i> Nueva transferencia
+        </a>
+      </div>
+    </header>
+
+    <!-- Summary cards -->
+    <section class="summary-grid">
+      <div class="summary-card" *ngFor="let s of summary">
+        <div class="sc-icon" [style.background]="s.bg" [style.color]="s.color">
+          <i [class]="s.icon"></i>
+        </div>
+        <div class="sc-body">
+          <span class="sc-label">{{ s.label }}</span>
+          <strong class="sc-value">{{ s.value | currency:'CLP':'symbol-narrow':'1.0-0' }}</strong>
+          <span class="sc-sub" [class.positive]="s.positive" [class.negative]="!s.positive">
+            <i [class]="s.positive ? 'fa-solid fa-arrow-trend-up' : 'fa-solid fa-arrow-trend-down'"></i>
+            {{ s.change }}
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two column: transactions + accounts -->
+    <div class="dashboard-grid">
+
+      <!-- Últimas transacciones -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-clock-rotate-left"></i> Últimas transacciones</h3>
+          <a routerLink="/accounts" class="card-link">Ver todas <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="tx-list">
+          <div class="tx-item" *ngFor="let tx of transactions">
+            <div class="tx-icon" [class.credit]="tx.type==='credit'" [class.debit]="tx.type==='debit'">
+              <i [class]="tx.type==='credit' ? 'fa-solid fa-arrow-down-long' : 'fa-solid fa-arrow-up-long'"></i>
+            </div>
+            <div class="tx-info">
+              <span class="tx-desc">{{ tx.desc }}</span>
+              <span class="tx-meta">{{ tx.date }} · {{ tx.account }}</span>
+            </div>
+            <span class="tx-amount" [class.credit]="tx.type==='credit'" [class.debit]="tx.type==='debit'">
+              {{ tx.type==='credit' ? '+' : '-' }}{{ tx.amount | currency:'CLP':'symbol-narrow':'1.0-0' }}
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mis cuentas -->
+      <div class="card">
+        <div class="card-header">
+          <h3><i class="fa-solid fa-wallet"></i> Mis cuentas</h3>
+          <a routerLink="/accounts" class="card-link">Gestionar <i class="fa-solid fa-chevron-right"></i></a>
+        </div>
+        <div class="account-list">
+          <div class="account-item" *ngFor="let acc of accounts">
+            <div class="acc-dot" [style.background]="acc.color"></div>
+            <div class="acc-info">
+              <span class="acc-name">{{ acc.name }}</span>
+              <span class="acc-number">{{ acc.number }}</span>
+            </div>
+            <strong class="acc-balance">{{ acc.balance | currency:'CLP':'symbol-narrow':'1.0-0' }}</strong>
+          </div>
+        </div>
+        <div class="account-total">
+          <span>Saldo total</span>
+          <strong>{{ totalBalance | currency:'CLP':'symbol-narrow':'1.0-0' }}</strong>
+        </div>
+      </div>
+
     </div>
+
+    <!-- Accesos rápidos -->
+    <section class="quick-actions">
+      <h3>Acciones rápidas</h3>
+      <div class="qa-grid">
+        <a class="qa-card" *ngFor="let q of quickActions" [routerLink]="q.link">
+          <div class="qa-icon" [style.background]="q.bg" [style.color]="q.color">
+            <i [class]="q.icon"></i>
+          </div>
+          <span>{{ q.label }}</span>
+        </a>
+      </div>
+    </section>
+
   </div>
 </div>

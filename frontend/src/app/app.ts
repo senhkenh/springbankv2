@@ -7,15 +7,15 @@ import { CommonModule } from '@angular/common';
   selector: 'app-root',
   imports: [RouterOutlet, Navbar, CommonModule],
   template: `
-    <app-navbar *ngIf="showSharedNav" />
+    <app-navbar *ngIf="showBankingNav" />
     <router-outlet />
   `
 })
 export class App {
   constructor(private router: Router) {}
 
-  get showSharedNav() {
-    const url = this.router.url;
-    return url !== '/' && url !== '' && !url.startsWith('/login');
+  get showBankingNav() {
+    const bankingRoutes = ['/dashboard', '/accounts', '/transfer'];
+    return bankingRoutes.some(r => this.router.url.startsWith(r));
   }
 }

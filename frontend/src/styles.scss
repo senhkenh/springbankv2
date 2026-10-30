@@ -1,60 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 :root {
-  --primary: #0029FF;
-  --primary-dark: #001fcc;
-  --primary-light: #e6eaff;
-  --text: #1a1a2e;
-  --muted: #6b7280;
-  --bg: #f4f6ff;
-  --white: #ffffff;
-  --danger: #ef4444;
-  --success: #22c55e;
+  --primary:       #0029FF;
+  --primary-dark:  #001fcc;
+  --primary-light: #eef1ff;
+  --navy:          #001240;
+  --text:          #111827;
+  --text-secondary:#4b5563;
+  --border:        #e5e7eb;
+  --bg:            #f8f9fc;
+  --white:         #ffffff;
+  --success:       #16a34a;
+  --danger:        #dc2626;
+  --warning:       #d97706;
 }
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Segoe UI', sans-serif;
+  font-family: 'Inter', 'Segoe UI', sans-serif;
   background: var(--bg);
   color: var(--text);
+  font-size: 15px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  padding: 10px 20px;
+a { color: var(--primary); text-decoration: none; }
+
+// ── BUTTONS ──────────────────────────────────────────────────────
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 11px 22px;
+  border-radius: 6px;
   font-size: 14px;
   font-weight: 600;
-  transition: background 0.2s;
+  cursor: pointer;
+  border: none;
+  transition: all 0.18s ease;
+  white-space: nowrap;
+
+  &-primary {
+    @extend .btn;
+    background: var(--primary);
+    color: var(--white);
+    &:hover { background: var(--primary-dark); }
+  }
+
+  &-outline {
+    @extend .btn;
+    background: transparent;
+    border: 1.5px solid var(--primary);
+    color: var(--primary);
+    &:hover { background: var(--primary-light); }
+  }
+
+  &-ghost {
+    @extend .btn;
+    background: transparent;
+    border: 1.5px solid var(--border);
+    color: var(--text);
+    &:hover { border-color: var(--primary); color: var(--primary); }
+  }
+
+  &-white {
+    @extend .btn;
+    background: var(--white);
+    color: var(--primary);
+    &:hover { background: var(--primary-light); }
+  }
+
+  &-white-outline {
+    @extend .btn;
+    background: transparent;
+    border: 1.5px solid rgba(255,255,255,0.5);
+    color: var(--white);
+    &:hover { background: rgba(255,255,255,0.1); }
+  }
+
+  &-lg { padding: 14px 28px; font-size: 15px; }
+  &-sm { padding: 8px 16px; font-size: 13px; }
+  &-full { width: 100%; justify-content: center; }
 }
 
-.btn-primary {
-  background: var(--primary);
-  color: var(--white);
-  &:hover { background: var(--primary-dark); }
-}
-
-.btn-outline {
-  background: transparent;
-  border: 2px solid var(--primary);
-  color: var(--primary);
-  &:hover { background: var(--primary-light); }
-}
-
-input, select {
+// ── FORM ELEMENTS ────────────────────────────────────────────────
+input, select, textarea {
   width: 100%;
   padding: 10px 14px;
-  border: 1.5px solid #d1d5db;
-  border-radius: 8px;
+  border: 1.5px solid var(--border);
+  border-radius: 6px;
   font-size: 14px;
+  font-family: inherit;
+  color: var(--text);
+  background: var(--white);
   outline: none;
-  transition: border 0.2s;
+  transition: border-color 0.18s;
   &:focus { border-color: var(--primary); }
+  &::placeholder { color: #9ca3af; }
 }
 
+label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+// ── LAYOUT ───────────────────────────────────────────────────────
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+.page-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 56px 32px;
+}
+
+// ── CARDS ────────────────────────────────────────────────────────
 .card {
   background: var(--white);
-  border-radius: 16px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
   padding: 24px;
-  box-shadow: 0 2px 12px rgba(0,41,255,0.07);
+}
+
+// ── SECTION HEADERS ──────────────────────────────────────────────
+.section-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.section-subtitle {
+  font-size: 16px;
+  color: var(--text-secondary);
+  max-width: 560px;
+}
+
+// ── PAGE HERO (inner pages) ───────────────────────────────────────
+.page-hero {
+  background: var(--navy);
+  padding: 64px 0;
+
+  .container { display: flex; flex-direction: column; gap: 12px; }
+
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    a { color: rgba(255,255,255,0.5); &:hover { color: white; } }
+    i { font-size: 10px; }
+  }
+
+  h1 { font-size: 36px; font-weight: 800; color: white; }
+  p { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 520px; }
+}
+
+// ── TABLE ────────────────────────────────────────────────────────
+table {
+  width: 100%;
+  border-collapse: collapse;
+  th {
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-secondary);
+    padding: 10px 16px;
+    border-bottom: 2px solid var(--border);
+  }
+  td {
+    padding: 14px 16px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--border);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg); }
+}
+
+// ── BADGE ────────────────────────────────────────────────────────
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  &-blue   { background: var(--primary-light); color: var(--primary); }
+  &-green  { background: #dcfce7; color: var(--success); }
+  &-red    { background: #fee2e2; color: var(--danger); }
+  &-yellow { background: #fef3c7; color: var(--warning); }
+  &-gray   { background: #f3f4f6; color: #6b7280; }
 }
